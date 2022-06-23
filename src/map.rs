@@ -40,12 +40,22 @@ impl<T: MapDescriptor> Default for Map<T> {
 impl<T: MapDescriptor> std::fmt::Debug for Map<T>
 where
     Circle<T::CircleDescriptor>: std::fmt::Debug,
-    Room<T::RoomDescriptor>: std::fmt::Debug,
+    Room<T::RoomDescriptor>: std::fmt::Debug 
 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("Map")
-            .field("circles", &self.circles)
-            .field("rooms", &self.rooms)
-            .finish()
+        f.debug_struct("Map").field("circles", &self.circles).field("rooms", &self.rooms).finish()
+    }
+}
+
+impl<T: MapDescriptor> Clone for Map<T> 
+where
+    Circle<T::CircleDescriptor>: Clone,
+    Room<T::RoomDescriptor>: Clone
+{
+    fn clone(&self) -> Self {
+        Self { 
+            circles: self.circles.clone(), 
+            rooms: self.rooms.clone() 
+        }
     }
 }

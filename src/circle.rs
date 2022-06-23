@@ -3,6 +3,7 @@ pub trait CircleDescriptor {
     type Data;
 }
 
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Circle<T: CircleDescriptor> {
     position: T::Position,
     data: T::Data,

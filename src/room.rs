@@ -3,6 +3,7 @@ pub trait RoomDescriptor {
     type Data;
 }
 
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Room<T: RoomDescriptor> {
     position: T::Position,
     data: T::Data,
